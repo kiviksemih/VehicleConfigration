@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/VehicleConfiguration/.vs/VehicleConfiguration/v16/Server/sqlite3
+/VehicleConfiguration/.vs/VehicleConfiguration/v16
+/VehicleConfiguration/VehicleConfiguration.DATA/obj
+/VehicleConfiguration/VehicleConfiguration.WPF/obj
