@@ -15,7 +15,7 @@ namespace VehicleConfiguration.DATA.Models
         public string CarModel { get; set; }
         public int Price { get; set; }
         public string CarImagePath { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreateDate { get; set; }
 

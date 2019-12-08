@@ -1,0 +1,21 @@
+﻿<Window x:Class="VehicleConfiguration.WPF.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VehicleConfiguration.WPF"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <TextBox x:Name="tbxUserName" HorizontalAlignment="Center" Margin="0,184,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="23"/>
+            <PasswordBox x:Name="tbxPasswordName" HorizontalAlignment="Center" Margin="0,256,0,0"  VerticalAlignment="Top" Width="324" Height="22"/>
+            <Label Content="Kullanıcı Adı" Foreground="red" HorizontalAlignment="Left" Margin="340,146,0,0" VerticalAlignment="Top" Height="32" Width="202"/>
+            <Label Content="Şifre" Foreground="red" HorizontalAlignment="Left" Margin="340,224,0,0" VerticalAlignment="Top" Height="32" Width="90"/>
+            <Button Content="Giriş Yap" x:Name="btnLogin" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Click="btnLogin_Click" RenderTransformOrigin="0.466,0.453" Height="25" Width="134"/>
+            <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="226,38,0,0" VerticalAlignment="Top" Width="341"/>
+
+        </Grid>
+
+    </Grid>
+</Window>

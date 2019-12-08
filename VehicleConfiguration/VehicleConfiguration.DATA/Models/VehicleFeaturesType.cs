@@ -12,7 +12,7 @@ namespace VehicleConfiguration.DATA.Models
 
         public int VehicleFeaturesTypeId { get; set; }
         public string Name { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreateDate { get; set; }
 

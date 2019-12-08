@@ -14,9 +14,9 @@ namespace VehicleConfiguration.DATA.Models
         public string DealerName { get; set; }
         public string DealerEmail { get; set; }
         public string DealerPhone { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
     }
