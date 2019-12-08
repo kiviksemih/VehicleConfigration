@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VehicleConfiguration.DATA.Models;
+using VehicleConfiguration.WPF.Helper;
 
 namespace VehicleConfiguration.WPF.Operations
 {
@@ -29,6 +30,16 @@ namespace VehicleConfiguration.WPF.Operations
         public List<Cars> GetAllActiveCars()
         {
             return db.Cars.Where(s => s.IsActive && !s.IsDeleted).ToList();
+        }
+
+        public List<VehicleFeatures> GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(int packageType, VehicleFeaturesTypeList vehicleFeaturesType)
+        {
+            bool packageBoolType = false;
+            if (packageType == 0)
+            {
+                packageBoolType = true;
+            }
+            return db.VehicleFeatures.Where(s => s.IsActive && !s.IsDeleted && s.IsStandartPackage == packageBoolType && s.VehicleFeaturesTypeId == (int)vehicleFeaturesType).ToList();
         }
     }
 }

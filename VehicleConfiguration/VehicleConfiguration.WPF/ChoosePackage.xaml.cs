@@ -54,6 +54,10 @@ namespace VehicleConfiguration.WPF
                 {
                     StaticOrder.SetPackageTypeId((int)PackageTypeList.Standart);
                 }
+                CreateCarChoose createCarChoose = new CreateCarChoose();
+                createCarChoose.Show();
+
+                this.Close();
             }
         }
     }

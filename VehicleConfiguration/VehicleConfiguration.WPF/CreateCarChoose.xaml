@@ -1,0 +1,33 @@
+﻿<Window x:Class="VehicleConfiguration.WPF.CreateCarChoose"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VehicleConfiguration.WPF"
+        mc:Ignorable="d"
+        Title="CreateCarChoose" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Gövde" x:Name="tabGovde">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Motor" x:Name="tabMotor">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Şanzıman / Vites" x:Name="tabVites" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Renk" x:Name="tabRenk" >
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Döşeme" x:Name="tabDoseme">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Opsiyon"  x:Name="tabOpsiyon">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
