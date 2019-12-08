@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VehicleConfiguration.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Araç Konfigurasyonu" Height="450" Width="800">
     <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="59*"/>
+                <ColumnDefinition Width="742*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ComboBox x:Name="cmbCarList" Text="Seçiniz" Grid.ColumnSpan="3"  HorizontalAlignment="Left" Margin="49,108,0,0" VerticalAlignment="Top" Width="197" Height="29"/>
+            <Label Content="Araç Listesi:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="49,77,0,0" VerticalAlignment="Top"/>
+            <Label Content="Lütfen Araç Seçiniz" Foreground="red" HorizontalAlignment="Left" Margin="342,77,0,0" x:Name="lblValCarSelect" VerticalAlignment="Top" Grid.Column="2"/>
+            <Button Content="Oluştur ve Fiyat Al "  Grid.ColumnSpan="3" x:Name="btnCreatedAndBuy" Visibility="Collapsed" HorizontalAlignment="Left" Foreground="White" Background="#5CB85C" Margin="42,0,0,0" VerticalAlignment="Center" Height="31" Width="121"/>
+            <Button Content="Keşfet" Visibility="Collapsed" x:Name="btnExplore" Background="#5BC0DE"  Foreground="White" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Height="31" Width="77" Grid.Column="2"/>
+
+            <Image x:Name="picCar" Height="100" Width="100" RenderTransformOrigin="0.534,0.502" Margin="382,125,259,209" Grid.Column="2"/>
+            <Label Content="" x:Name="lblCarName" HorizontalAlignment="Left" Margin="414,233,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+            <Label Content="" x:Name="lblCarModel" HorizontalAlignment="Left" Margin="414,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.741,4.056" Grid.Column="2"/>
+
+
+
+
+
+        </Grid>
 
     </Grid>
 </Window>

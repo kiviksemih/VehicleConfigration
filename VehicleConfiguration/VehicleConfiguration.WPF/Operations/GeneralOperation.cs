@@ -19,5 +19,16 @@ namespace VehicleConfiguration.WPF.Operations
         {
             return db.AppUser.Where(s => s.Username == username && s.Password == password && s.IsActive && !s.IsDeleted).SingleOrDefault();
         }
+
+        public Cars GetCarById(int carId)
+        {
+            return db.Cars.Where(s => s.IsActive && !s.IsDeleted&&s.CarsId==carId).SingleOrDefault();
+        }
+
+
+        public List<Cars> GetAllActiveCars()
+        {
+            return db.Cars.Where(s => s.IsActive && !s.IsDeleted).ToList();
+        }
     }
 }

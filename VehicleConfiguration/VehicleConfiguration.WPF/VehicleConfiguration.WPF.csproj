@@ -6,4 +6,20 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="image\logo.jpeg" />
+    <None Remove="image\special.png" />
+    <None Remove="image\standart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleConfiguration.DATA\VehicleConfiguration.DATA.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\logo.jpeg" />
+    <Resource Include="image\special.png" />
+    <Resource Include="image\standart.png" />
+  </ItemGroup>
+
 </Project>

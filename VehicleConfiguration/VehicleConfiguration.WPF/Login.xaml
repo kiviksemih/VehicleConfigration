@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800">
     <Grid>
-        <Grid>
+        <Grid Grid.Row="0"
+          Grid.Column="0" >
             <TextBox x:Name="tbxUserName" HorizontalAlignment="Center" Margin="0,184,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="23"/>
             <PasswordBox x:Name="tbxPasswordName" HorizontalAlignment="Center" Margin="0,256,0,0"  VerticalAlignment="Top" Width="324" Height="22"/>
             <Label Content="Kullanıcı Adı" Foreground="red" HorizontalAlignment="Left" Margin="340,146,0,0" VerticalAlignment="Top" Height="32" Width="202"/>

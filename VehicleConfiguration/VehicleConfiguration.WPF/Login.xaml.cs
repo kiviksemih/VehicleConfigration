@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VehicleConfiguration.DATA.Models;
+using VehicleConfiguration.WPF.Helper;
 using VehicleConfiguration.WPF.Operations;
 
 namespace VehicleConfiguration.WPF
@@ -41,8 +42,17 @@ namespace VehicleConfiguration.WPF
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                this.Hide();
+                this.Close();
+                StaticUser.SetUser(appUser);
             }
+            CleanProperty();
+        }
+
+
+        public void CleanProperty()
+        {
+            tbxPasswordName.Password = string.Empty;
+            tbxUserName.Text = string.Empty;
         }
     }
 }
