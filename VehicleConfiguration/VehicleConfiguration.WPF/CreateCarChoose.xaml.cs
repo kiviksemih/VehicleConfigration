@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,28 +22,38 @@ namespace VehicleConfiguration.WPF
     public partial class CreateCarChoose : Window
     {
         GeneralOperation generalOperation;
+        List<int> optionList = new List<int>();
+        int bodyFeatureId = 0;
+        int engineFeatureId = 0;
+        int gearboxFeatureId = 0;
+        int colorFeatureId = 0;
+        int floorFeatureId = 0;
         public CreateCarChoose()
         {
             InitializeComponent();
+            btnSave.Click += BtnSave_Click;
+
             generalOperation = new GeneralOperation();
 
             int packageType = StaticOrder.GetPackageTypeId();
 
             #region Gövde listesini getiriyor
-            List<VehicleFeatures>  bodyList = generalOperation.GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(packageType, Helper.VehicleFeaturesTypeList.BodyList);
+            List<VehicleFeatures> bodyList = generalOperation.GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(packageType, Helper.VehicleFeaturesTypeList.BodyList);
 
             Grid bodyGrid = new Grid();
             StackPanel stackBodyPanel = new StackPanel();
-          
+
 
             foreach (var item in bodyList)
             {
                 RadioButton radioButton = new RadioButton()
                 {
                     Content = item.FeaturesName,
+                    DataContext = item
                 };
+                radioButton.Checked += RadioButton_Checked;
                 stackBodyPanel.Children.Add(radioButton);
-             
+
             }
 
 
@@ -62,7 +73,9 @@ namespace VehicleConfiguration.WPF
                 RadioButton radioButton = new RadioButton()
                 {
                     Content = item.FeaturesName,
+                    DataContext = item
                 };
+                radioButton.Checked += RadioButton_Checked;
                 stackEnginePanel.Children.Add(radioButton);
 
             }
@@ -85,7 +98,9 @@ namespace VehicleConfiguration.WPF
                 RadioButton radioButton = new RadioButton()
                 {
                     Content = item.FeaturesName,
+                    DataContext = item
                 };
+                radioButton.Checked += RadioButton_Checked;
                 stackGearboxPanel.Children.Add(radioButton);
 
             }
@@ -108,7 +123,9 @@ namespace VehicleConfiguration.WPF
                 RadioButton radioButton = new RadioButton()
                 {
                     Content = item.FeaturesName.Trim(),
+                    DataContext = item
                 };
+                radioButton.Checked += RadioButton_Checked;
                 stackColorPanel.Children.Add(radioButton);
 
             }
@@ -131,7 +148,9 @@ namespace VehicleConfiguration.WPF
                 RadioButton radioButton = new RadioButton()
                 {
                     Content = item.FeaturesName,
+                    DataContext = item
                 };
+                radioButton.Checked += RadioButton_Checked;
                 stackFloorPanel.Children.Add(radioButton);
 
             }
@@ -154,7 +173,9 @@ namespace VehicleConfiguration.WPF
                 CheckBox checkBox = new CheckBox()
                 {
                     Content = item.FeaturesName,
+                    DataContext = item
                 };
+                checkBox.Click += CheckBox_Click;
                 stackOptionPanel.Children.Add(checkBox);
 
             }
@@ -164,7 +185,71 @@ namespace VehicleConfiguration.WPF
             tabOption.Content = bodyOptionGrid;
 
             #endregion Opsiyon listesini getiriyor
+        }
 
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            VehicleFeatures vehicleFeatures = (VehicleFeatures)radioButton.DataContext;
+
+            if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.BodyList)
+            {
+                bodyFeatureId = vehicleFeatures.VehicleFeaturesId;
+            }
+            else if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.EngineList)
+            {
+                engineFeatureId = vehicleFeatures.VehicleFeaturesId;
+            }
+            else if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.GearboxList)
+            {
+                gearboxFeatureId = vehicleFeatures.VehicleFeaturesId;
+            }
+            else if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.ColorList)
+            {
+                colorFeatureId = vehicleFeatures.VehicleFeaturesId;
+            }
+            else if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.FloorList)
+            {
+                floorFeatureId = vehicleFeatures.VehicleFeaturesId;
+            }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            VehicleFeatures vehicleFeatures = (VehicleFeatures)checkBox.DataContext;
+            if (checkBox.IsChecked.Value)
+            {
+                optionList.Add(vehicleFeatures.VehicleFeaturesId);
+            }
+            else
+            {
+                optionList.Remove(vehicleFeatures.VehicleFeaturesId);
+            }
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (bodyFeatureId == 0)
+            {
+                MessageBox.Show("Lütfen Gövde Seçiniz");
+            }
+            else if (engineFeatureId == 0)
+            {
+                MessageBox.Show("Lütfen Motor Seçiniz");
+            }
+            else if (gearboxFeatureId == 0)
+            {
+                MessageBox.Show("Lütfen Vites Kutusu Seçiniz");
+            }
+            else if (colorFeatureId == 0)
+            {
+                MessageBox.Show("Lütfen Renk Seçiniz");
+            }
+            else if (floorFeatureId == 0)
+            {
+                MessageBox.Show("Lütfen Döşeme Seçiniz");
+            }
         }
     }
 }

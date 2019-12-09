@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:VehicleConfiguration.WPF"
         mc:Ignorable="d"
         Title="Paket Oluştur" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="37*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.ColumnSpan="2">
+        <TabControl Grid.ColumnSpan="2" Margin="0,0,43,0">
             <TabItem Header="Gövde" x:Name="tabBody">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#FFE5E5E5" Margin="0,0,27,0">
                 </Grid>
             </TabItem>
             <TabItem Header="Motor" x:Name="tabEngine">
@@ -32,6 +32,7 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
+        <Button Content="Kaydet" Name="btnSave" FontSize="17" Foreground="White" Background="#5CB85C" Grid.Column="1" HorizontalAlignment="Left" Margin="663,23,0,0" VerticalAlignment="Top" Height="411" Width="77"/>
 
     </Grid>
 </Window>
