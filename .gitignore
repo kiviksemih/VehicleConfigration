@@ -6,3 +6,6 @@
 /VehicleConfiguration/.vs/VehicleConfiguration/v16
 /VehicleConfiguration/VehicleConfiguration.DATA/obj
 /VehicleConfiguration/VehicleConfiguration.WPF/obj
+VehicleConfiguration/.vs/VehicleConfiguration/DesignTimeBuild/.dtbcache
+VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleConfiguration.WPF.dll
+VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleConfiguration.WPF.pdb
