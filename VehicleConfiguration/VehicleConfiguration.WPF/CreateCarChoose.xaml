@@ -5,26 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VehicleConfiguration.WPF"
         mc:Ignorable="d"
-        Title="CreateCarChoose" Height="450" Width="800">
+        Title="Paket Oluştur" Height="450" Width="800">
     <Grid>
-        <TabControl>
-            <TabItem Header="Gövde" x:Name="tabGovde">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="37*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
+            <TabItem Header="Gövde" x:Name="tabBody">
                 <Grid Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
-            <TabItem Header="Motor" x:Name="tabMotor">
+            <TabItem Header="Motor" x:Name="tabEngine">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Şanzıman / Vites" x:Name="tabVites" >
+            <TabItem Header="Şanzıman / Vites" x:Name="tabGearbox" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Renk" x:Name="tabRenk" >
+            <TabItem Header="Renk" x:Name="tabColor" >
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Döşeme" x:Name="tabDoseme">
+            <TabItem Header="Döşeme" x:Name="tabFloor">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Opsiyon"  x:Name="tabOpsiyon">
+            <TabItem Header="Opsiyon"  x:Name="tabOption">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
