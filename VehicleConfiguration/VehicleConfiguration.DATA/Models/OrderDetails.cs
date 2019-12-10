@@ -8,9 +8,9 @@ namespace VehicleConfiguration.DATA.Models
         public int OrderDetailsId { get; set; }
         public int? OrderId { get; set; }
         public int? VehicleFeaturesId { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public virtual Orders Order { get; set; }
     }

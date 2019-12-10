@@ -233,23 +233,90 @@ namespace VehicleConfiguration.WPF
             if (bodyFeatureId == 0)
             {
                 MessageBox.Show("Lütfen Gövde Seçiniz");
+                return;
             }
             else if (engineFeatureId == 0)
             {
                 MessageBox.Show("Lütfen Motor Seçiniz");
+                return;
             }
             else if (gearboxFeatureId == 0)
             {
                 MessageBox.Show("Lütfen Vites Kutusu Seçiniz");
+                return;
             }
             else if (colorFeatureId == 0)
             {
                 MessageBox.Show("Lütfen Renk Seçiniz");
+                return;
             }
             else if (floorFeatureId == 0)
             {
                 MessageBox.Show("Lütfen Döşeme Seçiniz");
+                return;
             }
+
+            generalOperation = new GeneralOperation();
+
+            Orders orders = new Orders()
+            {
+                AppUserId = StaticUser.GetUser().AppUserId,
+                CarsId = StaticOrder.GetCarId(),
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                IsStandartPackage = true,
+            };
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = bodyFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId =colorFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = engineFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = floorFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = gearboxFeatureId
+            });
+
+            foreach (var item in optionList)
+            {
+                orders.OrderDetails.Add(new OrderDetails
+                {
+                    IsActive = true,
+                    CreateDate = DateTime.Now,
+                    IsDeleted = false,
+                    VehicleFeaturesId = item
+                });
+            }
+
+
+
+            generalOperation.InsertOrders(orders);
         }
     }
 }

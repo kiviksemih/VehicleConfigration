@@ -41,5 +41,11 @@ namespace VehicleConfiguration.WPF.Operations
             }
             return db.VehicleFeatures.Where(s => s.IsActive && !s.IsDeleted && s.IsStandartPackage == packageBoolType && s.VehicleFeaturesTypeId == (int)vehicleFeaturesType).ToList();
         }
+
+        public void InsertOrders(Orders insertOrder)
+        {
+            db.Orders.Add(insertOrder);
+            db.SaveChanges();
+        }
     }
 }

@@ -40,6 +40,8 @@ namespace VehicleConfiguration.DATA.Models
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.Email).HasMaxLength(200);
+
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
@@ -101,8 +103,6 @@ namespace VehicleConfiguration.DATA.Models
 
             modelBuilder.Entity<Orders>(entity =>
             {
-                entity.Property(e => e.ClientMail).HasMaxLength(100);
-
                 entity.Property(e => e.CreateDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
@@ -111,15 +111,16 @@ namespace VehicleConfiguration.DATA.Models
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
 
+                entity.HasOne(d => d.AppUser)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.AppUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__AppUserI__151B244E");
+
                 entity.HasOne(d => d.Cars)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CarsId)
                     .HasConstraintName("FK__Orders__CarsId__6B24EA82");
-
-                entity.HasOne(d => d.Dealer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.DealerId)
-                    .HasConstraintName("FK__Orders__DealerId__6C190EBB");
             });
 
             modelBuilder.Entity<VehicleFeatures>(entity =>
