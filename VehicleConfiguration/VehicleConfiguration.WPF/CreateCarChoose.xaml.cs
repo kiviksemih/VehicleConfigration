@@ -198,6 +198,7 @@ namespace VehicleConfiguration.WPF
             CheckBox checkBox = (CheckBox)sender;
             VehicleFeatures vehicleFeatures = (VehicleFeatures)checkBox.DataContext;
             totalPrice -= vehicleFeatures.FeaturesPrice;
+            optionList.Remove(vehicleFeatures.VehicleFeaturesId);
         }
 
         private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
@@ -399,9 +400,9 @@ namespace VehicleConfiguration.WPF
             lblTotalPrice.Content = (totalPrice += car.Price).ToString() + "₺";
             lblPackageType.Content = StaticOrder.GetPackageTypeId() == 1 ? "Special Paket" : "Standart Paket";
 
-            List<VehicleFeatures> optionList = generalOperation.GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(StaticOrder.GetPackageTypeId(), Helper.VehicleFeaturesTypeList.OptionList);
+            List<VehicleFeatures> optionFeatureList = generalOperation.GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(StaticOrder.GetPackageTypeId(), Helper.VehicleFeaturesTypeList.OptionList);
 
-            foreach (var item in optionList)
+            foreach (var item in optionFeatureList.Where(s=> optionList.Contains(s.VehicleFeaturesId)))
             {
                 Label lblOption = new Label()
                 {
@@ -409,7 +410,21 @@ namespace VehicleConfiguration.WPF
                 };
                 stackOption.Children.Add(lblOption);
             }
+        }
 
+        private void btnPrintPdf_Click(object sender, RoutedEventArgs e)
+        {
+            btnPrintPdf.Visibility = Visibility.Collapsed;
+            btnAppointment.Visibility = Visibility.Collapsed;
+
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(gridSecond, "Print");
+            }
+
+            btnPrintPdf.Visibility = Visibility.Visible;
+            btnAppointment.Visibility = Visibility.Visible;
         }
     }
 }
