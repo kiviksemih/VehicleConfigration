@@ -18,9 +18,11 @@ namespace VehicleConfiguration.DATA.Models
         public DateTime CreateDate { get; set; }
         public byte StatusType { get; set; }
         public int AppUserId { get; set; }
+        public int DealerId { get; set; }
 
         public virtual AppUser AppUser { get; set; }
         public virtual Cars Cars { get; set; }
+        public virtual Dealer Dealer { get; set; }
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

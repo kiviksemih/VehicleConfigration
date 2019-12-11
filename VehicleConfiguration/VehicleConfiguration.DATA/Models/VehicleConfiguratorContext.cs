@@ -121,6 +121,12 @@ namespace VehicleConfiguration.DATA.Models
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CarsId)
                     .HasConstraintName("FK__Orders__CarsId__6B24EA82");
+
+                entity.HasOne(d => d.Dealer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.DealerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__DealerId__1EA48E88");
             });
 
             modelBuilder.Entity<VehicleFeatures>(entity =>

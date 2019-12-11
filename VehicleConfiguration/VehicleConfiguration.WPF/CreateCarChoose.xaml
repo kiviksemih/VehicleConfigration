@@ -5,34 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VehicleConfiguration.WPF"
         mc:Ignorable="d"
-        Title="Paket Oluştur" Height="450" Width="800">
-    <Grid x:Name="grid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="37*"/>
-        </Grid.ColumnDefinitions>
-        <TabControl Grid.ColumnSpan="2" Margin="0,0,43,0">
-            <TabItem Header="Gövde" x:Name="tabBody">
-                <Grid Background="#FFE5E5E5" Margin="0,0,27,0">
-                </Grid>
-            </TabItem>
-            <TabItem Header="Motor" x:Name="tabEngine">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Şanzıman / Vites" x:Name="tabGearbox" >
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Renk" x:Name="tabColor" >
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Döşeme" x:Name="tabFloor">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Opsiyon"  x:Name="tabOption">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
-        <Button Content="Kaydet" Name="btnSave" FontSize="17" Foreground="White" Background="#5CB85C" Grid.Column="1" HorizontalAlignment="Left" Margin="663,23,0,0" VerticalAlignment="Top" Height="411" Width="77"/>
+        Title="Paket Oluştur" Height="800" Width="1200">
+    <Grid x:Name="MainGrid">
+        <Grid x:Name="gridSection"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="37*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.ColumnSpan="2" Margin="0,0,43,0">
+                <TabItem Header="Gövde" x:Name="tabBody">
+                    <Grid Background="#FFE5E5E5" Margin="0,0,27,0">
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Motor" x:Name="tabEngine">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Şanzıman / Vites" x:Name="tabGearbox" >
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Renk" x:Name="tabColor" >
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Döşeme" x:Name="tabFloor">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Opsiyon"  x:Name="tabOption">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Bayi Seç" x:Name="tabDealers">
+                    <Grid Background="#FFE5E5E5" Margin="0,0,-48,0"/>
+                </TabItem>
+            </TabControl>
+            <Button Content="Tamamla" Name="btnSave" FontSize="17" Foreground="White" Background="#5CB85C" Grid.Column="1" HorizontalAlignment="Left" Margin="1033,23,0,0" VerticalAlignment="Top" Height="761" Width="77"/>
 
+        </Grid>
+
+        <Grid x:Name="gridSecond"  Visibility="Collapsed"     >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imgCar" HorizontalAlignment="Left" Height="172" Margin="106,75,0,0" VerticalAlignment="Top" Width="563" Grid.Column="1"/>
+            <Label Content="Fiesta" FontSize="30" x:Name="lblCarName" HorizontalAlignment="Left" Margin="237,285,0,0" VerticalAlignment="Top" Grid.Column="1" Height="53" Width="184"/>
+            <Label Content="2019" FontSize="20" x:Name="lblYear" HorizontalAlignment="Left" Margin="237,343,0,0" VerticalAlignment="Top" Grid.Column="1" Height="53" Width="169"/>
+            <Label Content="price" FontSize="25" FontWeight="Bold" x:Name="lblTotalPrice" HorizontalAlignment="Left" Margin="237,473,0,0" VerticalAlignment="Top" Grid.Column="1" Height="54" Width="169"/>
+            <Label Content="Gövde Bilgisi" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,437,0,0" VerticalAlignment="Top" Height="36" Width="88"/>
+            <Label Content="Gövde Bilgisi" x:Name="lblBody" HorizontalAlignment="Left" Margin="28,473,0,0" VerticalAlignment="Top"  Height="36" Width="294" Grid.ColumnSpan="2"/>
+            <Label Content="Motor Bilgisi" FontWeight="Bold" HorizontalAlignment="Left" Margin="540,437,0,0" VerticalAlignment="Top" Height="36" Width="88" Grid.Column="1"/>
+            <Label Content="Motor Bilgisi" x:Name="lblEngine" HorizontalAlignment="Left" Margin="540,473,0,0" VerticalAlignment="Top"  Height="36" Width="294" Grid.Column="1"/>
+            <Label Content="Renk Bilgisi" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,553,0,0" VerticalAlignment="Top" Height="36" Width="88"/>
+            <Label Content="Renk Bilgisi" x:Name="lblColor" HorizontalAlignment="Left" Margin="28,589,0,0" VerticalAlignment="Top" Height="36" Width="294" Grid.ColumnSpan="2"/>
+            <Label Content="Döşeme Bilgisi" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,637,0,0" VerticalAlignment="Top" Height="36" Width="88"/>
+            <Label Content="Döşeme Bilgisi" x:Name="lblFloor" HorizontalAlignment="Left" Margin="28,673,0,0" VerticalAlignment="Top"  Height="36" Width="294" Grid.ColumnSpan="2"/>
+            <Label Content="Şanzıman Bilgisi" FontWeight="Bold" HorizontalAlignment="Left" Margin="540,553,0,0" VerticalAlignment="Top" Height="36" Width="88" Grid.Column="1"/>
+            <Label Content="Şanzıman Bilgisi" x:Name="lblGearbox" HorizontalAlignment="Left" Margin="540,589,0,0" VerticalAlignment="Top"  Height="36" Width="294
+                   " Grid.Column="1"/>
+
+            <StackPanel Grid.Column="1" Margin="540,655,0,0" x:Name="stackOption">
+                <Label Content="Opsiyon Bilgileri" FontWeight="Bold" HorizontalAlignment="Left" Height="36" Width="196" Grid.Column="1"/>
+
+            </StackPanel>
+            <Label Content="" FontSize="20" x:Name="lblPackageType" HorizontalAlignment="Left" Margin="237,412,0,0" VerticalAlignment="Top" Grid.Column="1" Height="53" Width="169"/>
+
+
+
+
+        </Grid>
     </Grid>
+
 </Window>
