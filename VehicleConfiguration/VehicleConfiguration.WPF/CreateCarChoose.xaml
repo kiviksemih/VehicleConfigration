@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Paket Oluştur" Height="800" Width="1200">
     <Grid x:Name="MainGrid">
-        <Grid x:Name="gridSection"    >
+        <Grid x:Name="gridSection"   >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="37*"/>
@@ -15,6 +15,10 @@
             <TabControl Grid.ColumnSpan="2" Margin="0,0,43,0">
                 <TabItem Header="Gövde" x:Name="tabBody">
                     <Grid Background="#FFE5E5E5" Margin="0,0,27,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="363*"/>
+                            <ColumnDefinition Width="761*"/>
+                        </Grid.ColumnDefinitions>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Motor" x:Name="tabEngine">
@@ -32,15 +36,12 @@
                 <TabItem Header="Opsiyon"  x:Name="tabOption">
                     <Grid Background="#FFE5E5E5"/>
                 </TabItem>
-                <TabItem Header="Bayi Seç" x:Name="tabDealers">
-                    <Grid Background="#FFE5E5E5" Margin="0,0,-48,0"/>
-                </TabItem>
             </TabControl>
             <Button Content="Tamamla" Name="btnSave" FontSize="17" Foreground="White" Background="#5CB85C" Grid.Column="1" HorizontalAlignment="Left" Margin="1033,23,0,0" VerticalAlignment="Top" Height="761" Width="77"/>
 
         </Grid>
 
-        <Grid x:Name="gridSecond" Visibility="Collapsed"   >
+        <Grid x:Name="gridSecond"  Visibility="Collapsed"   >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -66,11 +67,20 @@
 
             </StackPanel>
             <Label Content="" FontSize="20" x:Name="lblPackageType" HorizontalAlignment="Left" Margin="237,412,0,0" VerticalAlignment="Top" Grid.Column="1" Height="53" Width="169"/>
-            <Button Content="Randevu Al" x:Name="btnAppointment"  Background="#5CB85C"  Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Margin="211,571,0,0" VerticalAlignment="Top" Height="54" Width="118"/>
+            <Button Content="Devam et" x:Name="btnContinue"  Background="#5CB85C"  Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Margin="211,571,0,0" VerticalAlignment="Top" Height="54" Width="118"/>
             <Button Content="Çıktı Al" Name="btnPrintPdf" Click="btnPrintPdf_Click"  Background="#5CB85C"  Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Margin="211,641,0,0" VerticalAlignment="Top" Height="54" Width="118"/>
+        </Grid>
 
-
-
+        <Grid x:Name="gridOffer" Visibility="Collapsed" >
+            <ComboBox HorizontalAlignment="Center" x:Name="cmbDealer" Margin="0,134,0,0" VerticalAlignment="Top" Width="260" Height="59"/>
+            <Label Content="Bayi Seçiniz" FontSize="30" HorizontalAlignment="Left" Margin="470,66,0,0" VerticalAlignment="Top" Width="277" Height="62"/>
+            <Label Content="Ad Soyad" FontSize="30" HorizontalAlignment="Left" Margin="470,222,0,0" VerticalAlignment="Top" Width="277" Height="63"/>
+            <TextBox HorizontalAlignment="Center" x:Name="tbxFullName" FontSize="30" Margin="0,291,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="47"/>
+            <Label Content="E-Posta" FontSize="30" HorizontalAlignment="Left" Margin="470,0,0,0" VerticalAlignment="Center" Width="277" Height="64"/>
+            <TextBox HorizontalAlignment="Center" x:Name="tbxemail" FontSize="30" Margin="0,430,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="47"/>
+            <Label Content="Telefon" FontSize="30" HorizontalAlignment="Left" Margin="470,508,0,0" VerticalAlignment="Top" Width="277" Height="63"/>
+            <TextBox HorizontalAlignment="Center" x:Name="tbxPhone" FontSize="30" Margin="0,576,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="47"/>
+            <Button Content="Gönder" FontSize="30"  Background="#5CB85C"  Foreground="White" HorizontalAlignment="Center" x:Name="btnOrder" Margin="0,662,0,0" VerticalAlignment="Top" Height="73" Width="254"/>
 
         </Grid>
     </Grid>

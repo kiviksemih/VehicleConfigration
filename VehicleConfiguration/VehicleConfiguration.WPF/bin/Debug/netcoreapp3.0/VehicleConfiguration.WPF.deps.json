@@ -843,6 +843,7 @@
       },
       "VehicleConfiguration.DATA/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Analyzers": "3.1.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.0"
         },
         "runtime": {

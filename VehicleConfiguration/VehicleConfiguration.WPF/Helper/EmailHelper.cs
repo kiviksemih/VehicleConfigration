@@ -23,6 +23,7 @@ namespace VehicleConfiguration.WPF.Helper
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true;
             client.Credentials = info;
+            client.UseDefaultCredentials = true;
             client.Send(msg);
 
         }

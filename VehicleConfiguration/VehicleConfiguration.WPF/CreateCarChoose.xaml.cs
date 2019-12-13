@@ -29,11 +29,14 @@ namespace VehicleConfiguration.WPF
         int colorFeatureId = 0;
         int floorFeatureId = 0;
         decimal totalPrice = 0;
+        int deallerId = 0;
         public CreateCarChoose()
         {
             InitializeComponent();
             btnSave.Click += BtnSave_Click;
-
+            btnContinue.Click += BtnContinue_Click;
+            btnOrder.Click += BtnOrder_Click;
+            cmbDealer.SelectionChanged += CmbDealer_SelectionChanged;
             generalOperation = new GeneralOperation();
 
             int packageType = StaticOrder.GetPackageTypeId();
@@ -193,6 +196,143 @@ namespace VehicleConfiguration.WPF
             #endregion Opsiyon listesini getiriyor
         }
 
+        private void CmbDealer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmb = (ComboBox)sender;
+
+            Dealer dealer = (Dealer)cmb.SelectedItem;
+            deallerId = dealer.DealerId;
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (deallerId == 0)
+            {
+                MessageBox.Show("Lütfen Bayi Seçiniz");
+                return;
+            }
+            else if (string.IsNullOrEmpty(tbxemail.Text))
+            {
+                MessageBox.Show("Lütfen Mail Giriniz");
+                return;
+            }
+            else if (string.IsNullOrEmpty(tbxFullName.Text))
+            {
+                MessageBox.Show("Lütfen Ad Soyad Giriniz");
+                return;
+            }
+            else if (string.IsNullOrEmpty(tbxPhone.Text))
+            {
+                MessageBox.Show("Lütfen Telefon Giriniz");
+                return;
+            }
+            Dealer dealer = generalOperation.GetDealerById(deallerId);
+
+            Orders orders = new Orders()
+            {
+                AppUserId = StaticUser.GetUser().AppUserId,
+                CarsId = StaticOrder.GetCarId(),
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                IsStandartPackage = true,
+                StatusType = (int)OrderStatus.Draft,
+                DealerId = deallerId
+            };
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = bodyFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = colorFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = engineFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = floorFeatureId
+            });
+            orders.OrderDetails.Add(new OrderDetails
+            {
+                IsActive = true,
+                CreateDate = DateTime.Now,
+                IsDeleted = false,
+                VehicleFeaturesId = gearboxFeatureId
+            });
+            string optionTextList = string.Empty;
+
+            foreach (var item in optionList)
+            {
+                orders.OrderDetails.Add(new OrderDetails
+                {
+                    IsActive = true,
+                    CreateDate = DateTime.Now,
+                    IsDeleted = false,
+                    VehicleFeaturesId = item
+                });
+
+                VehicleFeatures vehicleFeatures = generalOperation.GetByIdVehicleFeatures(item);
+
+                if (string.IsNullOrEmpty(optionTextList))
+                {
+                    optionTextList = vehicleFeatures.FeaturesName;
+                }
+                else
+                {
+                    optionTextList += "</br>" + vehicleFeatures.FeaturesName;
+                }
+            }
+            generalOperation.InsertOrders(orders);
+
+            AppUser appUser = generalOperation.GetAppUserById(orders.AppUserId);
+
+            EmailHelper.Mail(tbxemail.Text, "Talebini Aldık", "Merhaba, " + appUser.Username + "<br>" + "Araç Sipariş Talebini Aldık Yakında Sana Geri Dönüş Yapacağız");
+
+            EmailHelper.Mail(dealer.DealerEmail, "Yeni Sipariş Talebi", "Merhaba , <br>" +
+                "Müşteri Adı:" + appUser.Username + "<br>" +
+                "Telefon Numarası:" + tbxPhone + "<br>" +
+                "Email:" + tbxemail + "<br>" +
+                "</hr>" +
+                "<h1>Araç Bilgileri </h1>" +
+                "<br>" +
+                "Araç Modeli:" + lblCarName.Content + "<br>" +
+                "Araç Paketi:" + lblPackageType.Content + "<br>" +
+                "Araç Gövde Seçimi:" + lblBody.Content + "<br>" +
+                "Araç Motor Seçimi:" + lblEngine.Content + "<br>" +
+                "Araç Şanzıman Seçimi:" + lblGearbox.Content + "<br>" +
+                "Araç Döşeme Seçimi:" + lblFloor.Content + "<br>" +
+                "Araç Opsiyon Seçimleri:" + optionTextList + "<br>" +
+                "İyi Çalışmalar Teklif Olarak Müşteriye Dönüş Yapınız");
+
+        }
+
+        private void BtnContinue_Click(object sender, RoutedEventArgs e)
+        {
+
+            gridSecond.Visibility = Visibility.Collapsed;
+            gridSection.Visibility = Visibility.Collapsed;
+            gridOffer.Visibility = Visibility.Visible;
+
+            cmbDealer.ItemsSource = generalOperation.GetAllDealer();
+            cmbDealer.DisplayMemberPath = "DealerName";
+        }
+
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender;
@@ -237,7 +377,7 @@ namespace VehicleConfiguration.WPF
             if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.BodyList)
             {
                 bodyFeatureId = vehicleFeatures.VehicleFeaturesId;
-                lblBody.Content = vehicleFeatures.FeaturesName+" Fiyat: "+vehicleFeatures.FeaturesPrice+"₺";
+                lblBody.Content = vehicleFeatures.FeaturesName + " Fiyat: " + vehicleFeatures.FeaturesPrice + "₺";
                 totalPrice += vehicleFeatures.FeaturesPrice;
             }
             else if (vehicleFeatures.VehicleFeaturesTypeId == (int)Helper.VehicleFeaturesTypeList.EngineList)
@@ -311,85 +451,8 @@ namespace VehicleConfiguration.WPF
 
             generalOperation = new GeneralOperation();
 
-            gridSecond.Visibility= Visibility.Visible;
+            gridSecond.Visibility = Visibility.Visible;
             gridSection.Visibility = Visibility.Collapsed;
-           
-
-            //Orders orders = new Orders()
-            //{
-            //    AppUserId = StaticUser.GetUser().AppUserId,
-            //    CarsId = StaticOrder.GetCarId(),
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    IsStandartPackage = true,
-            //};
-            //orders.OrderDetails.Add(new OrderDetails
-            //{
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    VehicleFeaturesId = bodyFeatureId
-            //});
-            //orders.OrderDetails.Add(new OrderDetails
-            //{
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    VehicleFeaturesId =colorFeatureId
-            //});
-            //orders.OrderDetails.Add(new OrderDetails
-            //{
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    VehicleFeaturesId = engineFeatureId
-            //});
-            //orders.OrderDetails.Add(new OrderDetails
-            //{
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    VehicleFeaturesId = floorFeatureId
-            //});
-            //orders.OrderDetails.Add(new OrderDetails
-            //{
-            //    IsActive = true,
-            //    CreateDate = DateTime.Now,
-            //    IsDeleted = false,
-            //    VehicleFeaturesId = gearboxFeatureId
-            //});
-
-            //foreach (var item in optionList)
-            //{
-            //    orders.OrderDetails.Add(new OrderDetails
-            //    {
-            //        IsActive = true,
-            //        CreateDate = DateTime.Now,
-            //        IsDeleted = false,
-            //        VehicleFeaturesId = item
-            //    });
-            //}
-            //generalOperation.InsertOrders(orders);
-
-            //EmailHelper.Mail(orders.AppUser.Email, "Talebini Aldık", "Merhaba, "+ orders.AppUser.Username+ "<br>" + "Araç Sipariş Talebini Aldık Yakında Sana Geri Dönüş Yapacağız");
-
-            //EmailHelper.Mail(dealer.DealerEmail, "Yeni Sipariş Talebi", "Merhaba , <br>" +
-            //    "Müşteri Adı:" + fullname + "<br>" +
-            //    "Telefon Numarası:" + phone + "<br>" +
-            //    "Email:" + email + "<br>" +
-            //    "</hr>" +
-            //    "<h1>Araç Bilgileri </h1>" +
-            //    "<br>" +
-            //    "Araç Modeli:" + car.CarName + "<br>" +
-            //    "Araç Paketi:" + typeName + "<br>" +
-            //    "Araç Gövde Seçimi:" + selectedBody.FeaturesName + "<br>" +
-            //    "Araç Motor Seçimi:" + selectedEngine.FeaturesName + "<br>" +
-            //    "Araç Şanzıman Seçimi:" + selectedGearbox.FeaturesName + "<br>" +
-            //    "Araç Şanzıman Seçimi:" + selectedColor.FeaturesName + "<br>" +
-            //    "Araç Döşeme Seçimi:" + selectedFloor.FeaturesName + "<br>" +
-            //    "Araç Opsiyon Seçimleri:" + optionPackage + "<br>" +
-            //    "İyi Çalışmalar Teklif Olarak Müşteriye Dönüş Yapınız");
 
             Cars car = generalOperation.GetCarById(StaticOrder.GetCarId());
 
@@ -402,7 +465,7 @@ namespace VehicleConfiguration.WPF
 
             List<VehicleFeatures> optionFeatureList = generalOperation.GetAllVehicleFeaturesByPackageTypeAndVehicleFeaturesType(StaticOrder.GetPackageTypeId(), Helper.VehicleFeaturesTypeList.OptionList);
 
-            foreach (var item in optionFeatureList.Where(s=> optionList.Contains(s.VehicleFeaturesId)))
+            foreach (var item in optionFeatureList.Where(s => optionList.Contains(s.VehicleFeaturesId)))
             {
                 Label lblOption = new Label()
                 {
@@ -415,7 +478,7 @@ namespace VehicleConfiguration.WPF
         private void btnPrintPdf_Click(object sender, RoutedEventArgs e)
         {
             btnPrintPdf.Visibility = Visibility.Collapsed;
-            btnAppointment.Visibility = Visibility.Collapsed;
+            btnContinue.Visibility = Visibility.Collapsed;
 
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
@@ -424,7 +487,7 @@ namespace VehicleConfiguration.WPF
             }
 
             btnPrintPdf.Visibility = Visibility.Visible;
-            btnAppointment.Visibility = Visibility.Visible;
+            btnContinue.Visibility = Visibility.Visible;
         }
     }
 }
