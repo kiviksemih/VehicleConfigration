@@ -320,6 +320,11 @@ namespace VehicleConfiguration.WPF
                 "Araç Opsiyon Seçimleri:" + optionTextList + "<br>" +
                 "İyi Çalışmalar Teklif Olarak Müşteriye Dönüş Yapınız");
 
+
+            MainWindow mainWindow = new MainWindow();
+
+            this.Close();
+            mainWindow.Show();
         }
 
         private void BtnContinue_Click(object sender, RoutedEventArgs e)
