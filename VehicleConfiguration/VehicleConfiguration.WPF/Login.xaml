@@ -13,8 +13,8 @@
             <PasswordBox x:Name="tbxPasswordName" HorizontalAlignment="Center" Margin="0,256,0,0"  VerticalAlignment="Top" Width="324" Height="22"/>
             <Label Content="Kullanıcı Adı" Foreground="red" HorizontalAlignment="Left" Margin="340,146,0,0" VerticalAlignment="Top" Height="32" Width="202"/>
             <Label Content="Şifre" Foreground="red" HorizontalAlignment="Left" Margin="340,224,0,0" VerticalAlignment="Top" Height="32" Width="90"/>
-            <Button Content="Giriş Yap" x:Name="btnLogin" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Click="btnLogin_Click" RenderTransformOrigin="0.466,0.453" Height="25" Width="134"/>
-            <Image x:Name="imgLogo" HorizontalAlignment="Left" Height="100" Margin="226,38,0,0" VerticalAlignment="Top" Width="341"/>
+            <Button Content="Giriş Yap" x:Name="btnLogin" HorizontalAlignment="Center" Background="#5CB85C"  Foreground="White" Margin="0,303,0,0" VerticalAlignment="Top" Click="btnLogin_Click" RenderTransformOrigin="0.466,0.453" Height="25" Width="134"/>
+            <Image x:Name="imgLogo" HorizontalAlignment="Left"  Height="100" Margin="226,38,0,0"  VerticalAlignment="Top" Width="341"/>
 
         </Grid>
 

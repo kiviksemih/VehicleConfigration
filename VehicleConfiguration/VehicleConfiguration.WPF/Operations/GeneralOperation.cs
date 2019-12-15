@@ -63,9 +63,21 @@ namespace VehicleConfiguration.WPF.Operations
             return db.Dealer.Where(s => s.IsActive && !s.IsDeleted).ToList();
         }
 
-        internal AppUser GetAppUserById(int appUserId)
+        public AppUser GetAppUserById(int appUserId)
         {
             return db.AppUser.Where(s => s.IsActive && !s.IsDeleted && s.AppUserId == appUserId).SingleOrDefault();
         }
+
+        public bool GetAnyUser(string userName)
+        {
+            return db.AppUser.Where(s => s.Username.Equals(userName)).Any();
+        }
+
+        public void InsertAppUser(AppUser entity)
+        {
+            db.AppUser.Add(entity);
+            db.SaveChanges();
+        }
+
     }
 }

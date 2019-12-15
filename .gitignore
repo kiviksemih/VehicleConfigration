@@ -20,3 +20,6 @@ VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleCon
 VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleConfiguration.DATA.pdb
 VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleConfiguration.WPF.dll
 VehicleConfiguration/VehicleConfiguration.WPF/bin/Debug/netcoreapp3.0/VehicleConfiguration.WPF.pdb
+/VehicleConfiguration/VehicleConfiguration.DATA/bin/Release/netcoreapp3.0
+/VehicleConfiguration/VehicleConfiguration.DATA/bin/Release/netstandard2.0
+/VehicleConfiguration/VehicleConfiguration.WPF/bin/Release/netcoreapp3.0

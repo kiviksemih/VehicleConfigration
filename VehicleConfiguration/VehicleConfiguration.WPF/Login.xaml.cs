@@ -40,8 +40,8 @@ namespace VehicleConfiguration.WPF
             }
             else
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                Home home = new Home();
+                home.Show();
                 this.Close();
                 StaticUser.SetUser(appUser);
             }

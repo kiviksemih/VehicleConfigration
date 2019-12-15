@@ -1,0 +1,17 @@
+﻿<Window x:Class="VehicleConfiguration.WPF.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VehicleConfiguration.WPF"
+        mc:Ignorable="d"
+        Title="Home" Height="450" Width="800">
+    <Grid>
+        <Button Content="Yeni Sipariş" x:Name="btnNewOrder" HorizontalAlignment="Left" Margin="59,45,0,0" VerticalAlignment="Top" Height="57" Width="84"/>
+        <Button Content="Yeni Üye" x:Name="btnRegister" HorizontalAlignment="Left" Margin="245,45,0,0" VerticalAlignment="Top" Height="57" Width="84"/>
+        <Button Content="Onaylanmamış Siparişler" x:Name="btnDraftOrder" HorizontalAlignment="Left" Margin="427,45,0,0" VerticalAlignment="Top" Height="57" Width="173"/>
+        <Button Content="Çıkış Yap" x:Name="btnLogout" HorizontalAlignment="Left" Background="#BE573F"  Foreground="White" Margin="697,45,0,0" VerticalAlignment="Top" Height="35" Width="82"/>
+
+
+    </Grid>
+</Window>

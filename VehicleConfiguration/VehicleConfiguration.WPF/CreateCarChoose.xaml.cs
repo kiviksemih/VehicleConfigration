@@ -321,10 +321,10 @@ namespace VehicleConfiguration.WPF
                 "İyi Çalışmalar Teklif Olarak Müşteriye Dönüş Yapınız");
 
 
-            MainWindow mainWindow = new MainWindow();
+            Home home = new Home();
 
             this.Close();
-            mainWindow.Show();
+            home.Show();
         }
 
         private void BtnContinue_Click(object sender, RoutedEventArgs e)

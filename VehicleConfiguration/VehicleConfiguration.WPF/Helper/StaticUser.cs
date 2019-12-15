@@ -19,5 +19,10 @@ namespace VehicleConfiguration.WPF.Helper
         {
             return _AppUser;
         }
+
+        public static void Logout()
+        {
+            _AppUser = null;
+        }
     }
 }
