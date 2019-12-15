@@ -38,7 +38,7 @@ namespace VehicleConfiguration.WPF
         private void BtnCreateUser_Click(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrEmpty(tbxUserName.Text)||string.IsNullOrEmpty(tbxPassword.Text))
+            if (string.IsNullOrEmpty(tbxUserName.Text)||string.IsNullOrEmpty(tbxPassword.Password))
             {
                 MessageBox.Show("Lütfen boş alanları doldurunuz");
             }
@@ -51,7 +51,7 @@ namespace VehicleConfiguration.WPF
                     IsActive = true,
                     IsDeleted = false,
                     IsAdmin = cbxIsAdmin.IsChecked.Value,
-                    Password=tbxPassword.Text
+                    Password=tbxPassword.Password
                 };
                 generalOperation.InsertAppUser(appUser);
                 MessageBox.Show("Yeni Kullanıcı  Oluşturuldu");

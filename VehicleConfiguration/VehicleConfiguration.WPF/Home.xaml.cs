@@ -52,7 +52,9 @@ namespace VehicleConfiguration.WPF
 
         private void BtnNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

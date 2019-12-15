@@ -30,6 +30,7 @@
 
 
         </Grid>
+        <Button Content="Menüye Geri Dön" x:Name="btnClose" HorizontalAlignment="Left" Background="#BE573F"  Foreground="White" Margin="654,35,0,0" VerticalAlignment="Top" Height="35" Width="104"/>
 
     </Grid>
 </Window>

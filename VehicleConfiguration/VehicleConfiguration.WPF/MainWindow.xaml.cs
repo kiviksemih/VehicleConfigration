@@ -30,11 +30,21 @@ namespace VehicleConfiguration.WPF
             InitializeComponent();
             generalOperation = new GeneralOperation();
 
+            btnClose.Click += BtnClose_Click;
             cmbCarList.SelectionChanged += CmbCarList_SelectionChanged;
             btnCreatedAndBuy.Click += BtnCreatedAndBuy_Click;
             List<Cars> carList = generalOperation.GetAllActiveCars();
             cmbCarList.ItemsSource = carList;
             cmbCarList.DisplayMemberPath = "CarName";
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+
+            home.Show();
+
+            this.Close();
         }
 
         private void BtnCreatedAndBuy_Click(object sender, RoutedEventArgs e)
