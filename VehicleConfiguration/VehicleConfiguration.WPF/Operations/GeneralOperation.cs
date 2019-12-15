@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -79,5 +80,23 @@ namespace VehicleConfiguration.WPF.Operations
             db.SaveChanges();
         }
 
+        public List<Orders> GetAllDraftOrdersList()
+        {
+            return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.StatusType == (int)OrderStatus.Draft).Include(s=>s.OrderDetails).Include(s=>s.AppUser).Include(s=>s.Dealer).Include(s=>s.Cars).ToList();
+        }
+
+        public void ChangeOrderStatus(bool status,int orderId)
+        {
+            Orders order = db.Orders.Where(s => s.OrdersId == orderId).SingleOrDefault();
+            if (status)
+            {
+                order.StatusType = (int)OrderStatus.Completed;
+            }
+            else
+            {
+                order.StatusType = (int)OrderStatus.Canceled;
+            }
+            db.SaveChanges();
+        }
     }
 }

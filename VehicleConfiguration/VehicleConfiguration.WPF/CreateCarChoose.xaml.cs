@@ -236,7 +236,7 @@ namespace VehicleConfiguration.WPF
                 IsActive = true,
                 CreateDate = DateTime.Now,
                 IsDeleted = false,
-                IsStandartPackage = true,
+                IsStandartPackage =StaticOrder.GetPackageTypeId()==1?true:false,
                 StatusType = (int)OrderStatus.Draft,
                 DealerId = deallerId
             };

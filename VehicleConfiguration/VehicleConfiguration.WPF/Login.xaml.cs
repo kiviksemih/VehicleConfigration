@@ -40,10 +40,11 @@ namespace VehicleConfiguration.WPF
             }
             else
             {
+                StaticUser.SetUser(appUser);
                 Home home = new Home();
                 home.Show();
                 this.Close();
-                StaticUser.SetUser(appUser);
+
             }
             CleanProperty();
         }

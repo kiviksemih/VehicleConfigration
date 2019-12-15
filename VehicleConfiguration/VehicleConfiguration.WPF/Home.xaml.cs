@@ -25,6 +25,12 @@ namespace VehicleConfiguration.WPF
             btnDraftOrder.Click += BtnDraftOrder_Click;
             btnRegister.Click += BtnRegister_Click;
             btnLogout.Click += BtnLogout_Click;
+
+            if (StaticUser.GetUser().IsAdmin)
+            {
+                btnDraftOrder.Visibility = Visibility.Visible;
+                btnRegister.Visibility = Visibility.Visible;
+            }
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -47,7 +53,9 @@ namespace VehicleConfiguration.WPF
 
         private void BtnDraftOrder_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            DraftOrder draftOrder = new DraftOrder();
+            draftOrder.Show();
+            this.Close();
         }
 
         private void BtnNewOrder_Click(object sender, RoutedEventArgs e)

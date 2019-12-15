@@ -8,8 +8,8 @@
         Title="Home" Height="450" Width="800">
     <Grid>
         <Button Content="Yeni Sipariş" x:Name="btnNewOrder" HorizontalAlignment="Left" Margin="59,45,0,0" VerticalAlignment="Top" Height="57" Width="84"/>
-        <Button Content="Yeni Üye" x:Name="btnRegister" HorizontalAlignment="Left" Margin="245,45,0,0" VerticalAlignment="Top" Height="57" Width="84"/>
-        <Button Content="Onaylanmamış Siparişler" x:Name="btnDraftOrder" HorizontalAlignment="Left" Margin="427,45,0,0" VerticalAlignment="Top" Height="57" Width="173"/>
+        <Button Content="Yeni Üye" Visibility="Collapsed" x:Name="btnRegister" HorizontalAlignment="Left" Margin="245,45,0,0" VerticalAlignment="Top" Height="57" Width="84"/>
+        <Button Content="Onaylanmamış Siparişler" Visibility="Collapsed" x:Name="btnDraftOrder" HorizontalAlignment="Left" Margin="427,45,0,0" VerticalAlignment="Top" Height="57" Width="173"/>
         <Button Content="Çıkış Yap" x:Name="btnLogout" HorizontalAlignment="Left" Background="#BE573F"  Foreground="White" Margin="697,45,0,0" VerticalAlignment="Top" Height="35" Width="82"/>
 
 

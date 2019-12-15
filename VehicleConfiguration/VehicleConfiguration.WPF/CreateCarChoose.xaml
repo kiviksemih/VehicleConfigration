@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Paket Oluştur" Height="800" Width="1200">
     <Grid x:Name="MainGrid">
-        <Grid x:Name="gridSection"   Visibility="Collapsed"  >
+        <Grid x:Name="gridSection"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="37*"/>
@@ -71,7 +71,7 @@
             <Button Content="Çıktı Al" Name="btnPrintPdf" Click="btnPrintPdf_Click"  Background="#5CB85C"  Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Margin="211,641,0,0" VerticalAlignment="Top" Height="54" Width="118"/>
         </Grid>
 
-        <Grid x:Name="gridOffer"   >
+        <Grid x:Name="gridOffer"  Visibility="Collapsed"  >
             <ComboBox HorizontalAlignment="Center" x:Name="cmbDealer" Margin="0,134,0,0" VerticalAlignment="Top" Width="260" Height="59"/>
             <Label Content="Bayi Seçiniz" FontSize="30" HorizontalAlignment="Left" Margin="470,66,0,0" VerticalAlignment="Top" Width="277" Height="62"/>
             <Label Content="Ad Soyad" FontSize="30" HorizontalAlignment="Left" Margin="470,222,0,0" VerticalAlignment="Top" Width="277" Height="63"/>
