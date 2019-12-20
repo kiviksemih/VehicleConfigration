@@ -1,4 +1,4 @@
-﻿<Window x:Class="VehicleConfiguration.WPF.DraftOrder"
+﻿<Window x:Class="VehicleConfiguration.WPF.OrderList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="Taslak Şipariş Listesi" Height="531" Width="1241">
     <Grid >
-        <DataGrid x:Name="dGrid" Margin="40,28,324,222" ColumnWidth="*" />
+        <DataGrid x:Name="dGrid" Margin="41,78,323,172" ColumnWidth="*" />
         <Button Content="Onayla"  x:Name="btnSuccess" FontSize="25" Background="#5CB85C"  Foreground="White" HorizontalAlignment="Left" Margin="306,352,0,0" Visibility='Collapsed' VerticalAlignment="Top" Height="49" Width="145"/>
         <Button Content="İptal Et" x:Name="btnRemove" FontSize="25" Background="#DC3545"  Foreground="White" HorizontalAlignment="Center" Margin="0,352,0,0" Visibility='Collapsed' VerticalAlignment="Top" Height="49" Width="145"/>
         <Button Content="Menüye Geri Dön" x:Name="btnClose" HorizontalAlignment="Left" Background="#BE573F"  Foreground="White" Margin="1078,45,0,0" VerticalAlignment="Top" Height="35" Width="104"/>
+        <ComboBox x:Name="cmbStatus" HorizontalAlignment="Left" Margin="318,29,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Durum" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

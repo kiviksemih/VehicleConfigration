@@ -25,6 +25,8 @@ namespace VehicleConfiguration.WPF.Model
         [DisplayName("Sipariş Tarihi")]
         public DateTime OrderDate { get; set; }
 
+        public byte StatusType { get; set; }
+
 
     }
 }

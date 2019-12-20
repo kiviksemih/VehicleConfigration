@@ -80,10 +80,19 @@ namespace VehicleConfiguration.WPF.Operations
             db.SaveChanges();
         }
 
-        public List<Orders> GetAllDraftOrdersList()
+        public List<Orders> GetOrderListByStatus(OrderStatus status)
         {
-            return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.StatusType == (int)OrderStatus.Draft).Include(s=>s.OrderDetails).Include(s=>s.AppUser).Include(s=>s.Dealer).Include(s=>s.Cars).ToList();
+            if (status == OrderStatus.All)
+            {
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+            }
+            else
+            {
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.StatusType == (int)status).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+            }
+           
         }
+
 
         public void ChangeOrderStatus(bool status,int orderId)
         {

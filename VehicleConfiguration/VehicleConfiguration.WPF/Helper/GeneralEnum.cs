@@ -22,6 +22,7 @@ namespace VehicleConfiguration.WPF.Helper
 
     public enum OrderStatus
     {
+        All = 0,
         Draft = 1,
         Canceled = 2,
         Completed = 3

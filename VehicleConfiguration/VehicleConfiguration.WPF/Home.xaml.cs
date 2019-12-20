@@ -53,7 +53,7 @@ namespace VehicleConfiguration.WPF
 
         private void BtnDraftOrder_Click(object sender, RoutedEventArgs e)
         {
-            DraftOrder draftOrder = new DraftOrder();
+            OrderList draftOrder = new OrderList();
             draftOrder.Show();
             this.Close();
         }
