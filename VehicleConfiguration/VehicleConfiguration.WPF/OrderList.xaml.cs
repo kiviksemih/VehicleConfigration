@@ -123,18 +123,20 @@ namespace VehicleConfiguration.WPF
             {
                 orderId = gridModel.OrderId;
 
-
-                if (gridModel.StatusType == (int)OrderStatus.Draft)
+                if (StaticUser.GetUser().IsAdmin)
                 {
-                    btnRemove.Visibility = Visibility.Visible;
+                    if (gridModel.StatusType == (int)OrderStatus.Draft)
+                    {
+                        btnRemove.Visibility = Visibility.Visible;
 
-                    btnSuccess.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    btnRemove.Visibility = Visibility.Collapsed;
+                        btnSuccess.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        btnRemove.Visibility = Visibility.Collapsed;
 
-                    btnSuccess.Visibility = Visibility.Collapsed;
+                        btnSuccess.Visibility = Visibility.Collapsed;
+                    }
                 }
 
             }
