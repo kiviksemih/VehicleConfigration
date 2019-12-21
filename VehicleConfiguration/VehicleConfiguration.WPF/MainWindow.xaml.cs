@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,11 +32,24 @@ namespace VehicleConfiguration.WPF
             generalOperation = new GeneralOperation();
 
             btnClose.Click += BtnClose_Click;
+            btnDiscover.Click += BtnDiscover_Click;
             cmbCarList.SelectionChanged += CmbCarList_SelectionChanged;
             btnCreatedAndBuy.Click += BtnCreatedAndBuy_Click;
             List<Cars> carList = generalOperation.GetAllActiveCars();
             cmbCarList.ItemsSource = carList;
             cmbCarList.DisplayMemberPath = "CarName";
+        }
+
+        private void BtnDiscover_Click(object sender, RoutedEventArgs e)
+        {
+
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
+            var p = new Process();
+            p.StartInfo = new ProcessStartInfo(startupPath + "/Pdf/kesfet.pdf")
+            {
+                UseShellExecute = true
+            };
+            p.Start();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -61,7 +75,7 @@ namespace VehicleConfiguration.WPF
             #region Gizlenip alınan alanlar
             lblValCarSelect.Visibility = Visibility.Collapsed;
             btnCreatedAndBuy.Visibility = Visibility.Visible;
-            btnExplore.Visibility = Visibility.Visible;
+            btnDiscover.Visibility = Visibility.Visible;
             lblCarName.Visibility = Visibility.Visible;
             lblCarModel.Visibility = Visibility.Visible;
             picCar.Visibility = Visibility.Visible;
