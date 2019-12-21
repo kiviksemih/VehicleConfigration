@@ -306,8 +306,8 @@ namespace VehicleConfiguration.WPF
 
             EmailHelper.Mail(dealer.DealerEmail, "Yeni Sipariş Talebi", "Merhaba , <br>" +
                 "Müşteri Adı:" + appUser.Username + "<br>" +
-                "Telefon Numarası:" + tbxPhone + "<br>" +
-                "Email:" + tbxemail + "<br>" +
+                "Telefon Numarası:" + tbxPhone.Text + "<br>" +
+                "Email:" + tbxemail.Text + "<br>" +
                 "</hr>" +
                 "<h1>Araç Bilgileri </h1>" +
                 "<br>" +
