@@ -38,6 +38,7 @@ namespace VehicleConfiguration.WPF
             btnOrder.Click += BtnOrder_Click;
             cmbDealer.SelectionChanged += CmbDealer_SelectionChanged;
             generalOperation = new GeneralOperation();
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
 
             int packageType = StaticOrder.GetPackageTypeId();
 
@@ -55,7 +56,23 @@ namespace VehicleConfiguration.WPF
                     Content = item.FeaturesName,
                     DataContext = item
                 };
+
                 radioButton.Checked += RadioButton_Checked;
+
+                #region Araç resimlerini getiriyoruz
+                Image imageBody = new Image();
+                imageBody.Source = new BitmapImage(new Uri(startupPath + "/image/body.jpg" ));
+                imageBody.HorizontalAlignment = HorizontalAlignment.Left;
+                imageBody.Height = 248;
+                imageBody.Margin = new Thickness(369, 0, 0, 0);
+                imageBody.VerticalAlignment = VerticalAlignment.Top;
+                imageBody.Width = 373;
+
+                bodyGrid.Children.Add(imageBody);
+
+                #endregion Araç resimlerini getiriyoruz
+
+
                 stackBodyPanel.Children.Add(radioButton);
 
             }
@@ -85,6 +102,15 @@ namespace VehicleConfiguration.WPF
 
             }
 
+            Image imageEngine = new Image();
+            imageEngine.Source = new BitmapImage(new Uri(startupPath + "/image/engine.jpg"));
+            imageEngine.HorizontalAlignment = HorizontalAlignment.Left;
+            imageEngine.Height = 248;
+            imageEngine.Margin = new Thickness(369, 0, 0, 0);
+            imageEngine.VerticalAlignment = VerticalAlignment.Top;
+            imageEngine.Width = 373;
+
+            engineGrid.Children.Add(imageEngine);
 
             engineGrid.Children.Add(stackEnginePanel);
             tabEngine.Content = engineGrid;
@@ -111,6 +137,15 @@ namespace VehicleConfiguration.WPF
 
             }
 
+            Image imageGearbox = new Image();
+            imageGearbox.Source = new BitmapImage(new Uri(startupPath + "/image/gearbox.jpg"));
+            imageGearbox.HorizontalAlignment = HorizontalAlignment.Left;
+            imageGearbox.Height = 248;
+            imageGearbox.Margin = new Thickness(369, 0, 0, 0);
+            imageGearbox.VerticalAlignment = VerticalAlignment.Top;
+            imageGearbox.Width = 373;
+
+            gearboxGrid.Children.Add(imageGearbox);
 
             gearboxGrid.Children.Add(stackGearboxPanel);
             tabGearbox.Content = gearboxGrid;
@@ -138,6 +173,16 @@ namespace VehicleConfiguration.WPF
             }
 
 
+            Image imageColor = new Image();
+            imageColor.Source = new BitmapImage(new Uri(startupPath + "/image/color.png"));
+            imageColor.HorizontalAlignment = HorizontalAlignment.Left;
+            imageColor.Height = 248;
+            imageColor.Margin = new Thickness(369, 0, 0, 0);
+            imageColor.VerticalAlignment = VerticalAlignment.Top;
+            imageColor.Width = 373;
+
+            colorGrid.Children.Add(imageColor);
+
             colorGrid.Children.Add(stackColorPanel);
             tabColor.Content = colorGrid;
 
@@ -164,6 +209,16 @@ namespace VehicleConfiguration.WPF
             }
 
 
+            Image imageFloor = new Image();
+            imageFloor.Source = new BitmapImage(new Uri(startupPath + "/image/floor.jpg"));
+            imageFloor.HorizontalAlignment = HorizontalAlignment.Left;
+            imageFloor.Height = 248;
+            imageFloor.Margin = new Thickness(369, 0, 0, 0);
+            imageFloor.VerticalAlignment = VerticalAlignment.Top;
+            imageFloor.Width = 373;
+
+            bodyFloorGrid.Children.Add(imageFloor);
+
             bodyFloorGrid.Children.Add(stackFloorPanel);
             tabFloor.Content = bodyFloorGrid;
 
@@ -189,6 +244,17 @@ namespace VehicleConfiguration.WPF
 
             }
 
+
+
+            Image imageOption = new Image();
+            imageOption.Source = new BitmapImage(new Uri(startupPath + "/image/option.jpg"));
+            imageOption.HorizontalAlignment = HorizontalAlignment.Left;
+            imageOption.Height = 248;
+            imageOption.Margin = new Thickness(369, 0, 0, 0);
+            imageOption.VerticalAlignment = VerticalAlignment.Top;
+            imageOption.Width = 373;
+
+            bodyOptionGrid.Children.Add(imageOption);
 
             bodyOptionGrid.Children.Add(stackOptionPanel);
             tabOption.Content = bodyOptionGrid;
