@@ -7,7 +7,7 @@ namespace VehicleConfiguration.WPF.Model
 {
    public class CustomDictionaryModel
     {
-        public OrderStatus Key { get; set; }
+        public int Key { get; set; }
 
         public string Value { get; set; }
     }

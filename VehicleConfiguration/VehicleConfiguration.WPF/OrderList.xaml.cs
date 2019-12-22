@@ -25,12 +25,21 @@ namespace VehicleConfiguration.WPF
     {
         GeneralOperation generalOperation;
         int orderId = 0;
-        OrderStatus orderstatus = OrderStatus.All;
+        int carId = 0;
+        int orderstatus = (int)OrderStatus.All;
         public OrderList()
         {
             InitializeComponent();
-            generalOperation = new GeneralOperation();
 
+            cmbStatus.SelectionChanged += CmbStatus_SelectionChanged;
+            cmbCar.SelectionChanged += CmbCar_SelectionChanged;
+            btnClose.Click += BtnClose_Click;
+            btnRemove.Click += BtnRemove_Click;
+            btnSuccess.Click += BtnSuccess_Click;
+            dGrid.AutoGeneratingColumn += DGrid_AutoGeneratingColumn;
+            dGrid.SelectionChanged += DGrid_SelectionChanged;
+
+            generalOperation = new GeneralOperation();
 
             List<CustomDictionaryModel> customDictionaryModel = new List<CustomDictionaryModel>()
             {
@@ -41,33 +50,45 @@ namespace VehicleConfiguration.WPF
                 },
                  new CustomDictionaryModel()
                 {
-                    Key=OrderStatus.Draft,
+                    Key=(int)OrderStatus.Draft,
                     Value="Taslak"
                 },
                 new CustomDictionaryModel()
                 {
-                     Key=OrderStatus.Completed,
+                     Key=(int)OrderStatus.Completed,
                     Value="Onaylanmış"
                 },
                 new CustomDictionaryModel()
                 {
-                     Key=OrderStatus.Canceled,
+                     Key=(int)OrderStatus.Canceled,
                     Value="İptal Edilmiş"
                 }
             };
 
             cmbStatus.ItemsSource = customDictionaryModel;
             cmbStatus.DisplayMemberPath = "Value";
-            cmbStatus.SelectedItem = customDictionaryModel.Where(s => s.Key == OrderStatus.All).FirstOrDefault();
+            cmbStatus.SelectedItem = customDictionaryModel.Where(s => s.Key == (int)OrderStatus.All).FirstOrDefault();
 
-            cmbStatus.SelectionChanged += CmbStatus_SelectionChanged;
-            btnClose.Click += BtnClose_Click;
-            btnRemove.Click += BtnRemove_Click;
-            btnSuccess.Click += BtnSuccess_Click;
-            dGrid.AutoGeneratingColumn += DGrid_AutoGeneratingColumn;
-            dGrid.SelectionChanged += DGrid_SelectionChanged;
+
+            List<Cars> carList = generalOperation.GetAllActiveCars();
+            cmbCar.ItemsSource = carList;
+            cmbCar.SelectedItem = carList.FirstOrDefault();
+            cmbCar.DisplayMemberPath = "CarName";
+
+
             dGrid.IsReadOnly = true;
-            GridUpdate(OrderStatus.All);
+            GridUpdate();
+        }
+
+        private void CmbCar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            Cars selectedItem = (Cars)comboBox.SelectedItem;
+
+            carId = selectedItem.CarsId;
+
+            GridUpdate();
         }
 
         private void CmbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,7 +99,7 @@ namespace VehicleConfiguration.WPF
 
             orderstatus = selectedItem.Key;
 
-            GridUpdate(selectedItem.Key);
+            GridUpdate();
         }
 
         private void BtnSuccess_Click(object sender, RoutedEventArgs e)
@@ -87,7 +108,7 @@ namespace VehicleConfiguration.WPF
             {
                 generalOperation.ChangeOrderStatus(true, orderId);
                 MessageBox.Show("İşlem Tamamlandı");
-                GridUpdate(OrderStatus.All);
+                GridUpdate(true);
             }
         }
 
@@ -101,7 +122,7 @@ namespace VehicleConfiguration.WPF
             {
                 generalOperation.ChangeOrderStatus(false, orderId);
                 MessageBox.Show("İşlem Tamamlandı");
-                GridUpdate(OrderStatus.All);
+                GridUpdate(true);
             }
 
         }
@@ -154,10 +175,18 @@ namespace VehicleConfiguration.WPF
             }
         }
 
-        public void GridUpdate(OrderStatus status)
+        public void GridUpdate(bool result=false)
         {
-            List<Orders> orderList = generalOperation.GetOrderListByStatus(status);
+            List<Orders> orderList;
+            if (!result)
+            {
+               orderList = generalOperation.GetOrderListByStatus(orderstatus, carId);
 
+            }
+            else
+            {
+               orderList = generalOperation.GetOrderListByStatus(0, 0);
+            }
             List<OrderGridModel> orderGridModelList = new List<OrderGridModel>();
 
             foreach (Orders order in orderList)

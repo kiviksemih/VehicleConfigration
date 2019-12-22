@@ -80,21 +80,32 @@ namespace VehicleConfiguration.WPF.Operations
             db.SaveChanges();
         }
 
-        public List<Orders> GetOrderListByStatus(OrderStatus status)
+        public List<Orders> GetOrderListByStatus(int status=0, int carId=0)
         {
-            if (status == OrderStatus.All)
+            if (status == 0 && carId == 0)
             {
                 return db.Orders.Where(s => s.IsActive && !s.IsDeleted).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
             }
-            else
+            else if (status != 0 && carId == 0)
             {
                 return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.StatusType == (int)status).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
             }
-           
+            else if (carId != 0 && status == 0)
+            {
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.CarsId == carId).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+            }
+            else if (status != 0 && carId != 0)
+            {
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.CarsId == carId&&s.StatusType==status).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+            }
+            else
+            {
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+            }
         }
 
 
-        public void ChangeOrderStatus(bool status,int orderId)
+        public void ChangeOrderStatus(bool status, int orderId)
         {
             Orders order = db.Orders.Where(s => s.OrdersId == orderId).SingleOrDefault();
             if (status)

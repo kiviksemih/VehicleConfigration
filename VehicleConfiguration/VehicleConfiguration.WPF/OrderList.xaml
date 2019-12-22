@@ -13,6 +13,8 @@
         <Button Content="Menüye Geri Dön" x:Name="btnClose" HorizontalAlignment="Left" Background="#BE573F"  Foreground="White" Margin="1078,45,0,0" VerticalAlignment="Top" Height="35" Width="104"/>
         <ComboBox x:Name="cmbStatus" HorizontalAlignment="Left" Margin="318,29,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Durum" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbCar" HorizontalAlignment="Left" Margin="547,29,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Araç" HorizontalAlignment="Left" Margin="480,27,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
