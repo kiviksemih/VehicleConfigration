@@ -144,6 +144,12 @@ namespace VehicleConfiguration.WPF
             {
                 orderId = gridModel.OrderId;
 
+              OrderFeatureModel orderFeatureModel= generalOperation.GetOrdersById(orderId);
+
+                string strMsg = String.Format(" Gövde \t: {0}\n Motor \t: {1} \n Vites Kutusu \t: {2}\n Döşeme \t: {3} \n Opsiyonlar \t: {4}", orderFeatureModel.Body,orderFeatureModel.Engine,orderFeatureModel.GearBox,orderFeatureModel.Floor,orderFeatureModel.Option);
+
+                MessageBox.Show(strMsg,"Araç Detayları");
+
                 if (StaticUser.GetUser().IsAdmin)
                 {
                     if (gridModel.StatusType == (int)OrderStatus.Draft)

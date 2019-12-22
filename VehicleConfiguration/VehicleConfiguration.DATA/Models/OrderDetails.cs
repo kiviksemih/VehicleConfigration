@@ -13,5 +13,7 @@ namespace VehicleConfiguration.DATA.Models
         public DateTime CreateDate { get; set; }
 
         public virtual Orders Order { get; set; }
+
+        public virtual VehicleFeatures VehicleFeatures { get; set; }
     }
 }

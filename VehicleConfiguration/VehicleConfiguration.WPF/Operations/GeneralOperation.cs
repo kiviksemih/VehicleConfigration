@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using VehicleConfiguration.DATA.Models;
 using VehicleConfiguration.WPF.Helper;
+using VehicleConfiguration.WPF.Model;
 
 namespace VehicleConfiguration.WPF.Operations
 {
@@ -31,6 +32,44 @@ namespace VehicleConfiguration.WPF.Operations
             return db.Dealer.Where(s => s.IsActive && !s.IsDeleted && s.DealerId == dealerId).SingleOrDefault();
         }
 
+        public OrderFeatureModel GetOrdersById(int ordersId)
+        {
+            OrderFeatureModel orderFeatureModel = new OrderFeatureModel();
+
+            List<OrderDetails> orderDetails = db.OrderDetails.Where(s => s.OrderId == ordersId).Include(s => s.VehicleFeatures).ToList();
+
+            foreach (OrderDetails ord in orderDetails)
+            {
+                if (ord.VehicleFeatures.VehicleFeaturesTypeId == (int)VehicleFeaturesTypeList.BodyList)
+                {
+                    orderFeatureModel.Body = ord.VehicleFeatures.FeaturesName;
+                }
+                else if (ord.VehicleFeatures.VehicleFeaturesTypeId == (int)VehicleFeaturesTypeList.EngineList)
+                {
+                    orderFeatureModel.Engine = ord.VehicleFeatures.FeaturesName;
+                }
+                else if (ord.VehicleFeatures.VehicleFeaturesTypeId == (int)VehicleFeaturesTypeList.GearboxList)
+                {
+                    orderFeatureModel.GearBox = ord.VehicleFeatures.FeaturesName;
+                }
+                else if (ord.VehicleFeatures.VehicleFeaturesTypeId == (int)VehicleFeaturesTypeList.FloorList)
+                {
+                    orderFeatureModel.Floor = ord.VehicleFeatures.FeaturesName;
+                }
+                else if (ord.VehicleFeatures.VehicleFeaturesTypeId == (int)VehicleFeaturesTypeList.OptionList)
+                {
+                    if (string.IsNullOrEmpty(orderFeatureModel.Option))
+                    {
+                        orderFeatureModel.Option = ord.VehicleFeatures.FeaturesName;
+                    }
+                    else
+                    {
+                        orderFeatureModel.Option +=" , "+ord.VehicleFeatures.FeaturesName;
+                    }
+                }
+            }
+            return orderFeatureModel;
+        }
 
         public List<Cars> GetAllActiveCars()
         {
@@ -80,7 +119,7 @@ namespace VehicleConfiguration.WPF.Operations
             db.SaveChanges();
         }
 
-        public List<Orders> GetOrderListByStatus(int status=0, int carId=0)
+        public List<Orders> GetOrderListByStatus(int status = 0, int carId = 0)
         {
             if (status == 0 && carId == 0)
             {
@@ -96,7 +135,7 @@ namespace VehicleConfiguration.WPF.Operations
             }
             else if (status != 0 && carId != 0)
             {
-                return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.CarsId == carId&&s.StatusType==status).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
+                return db.Orders.Where(s => s.IsActive && !s.IsDeleted && s.CarsId == carId && s.StatusType == status).Include(s => s.OrderDetails).Include(s => s.AppUser).Include(s => s.Dealer).Include(s => s.Cars).ToList();
             }
             else
             {
