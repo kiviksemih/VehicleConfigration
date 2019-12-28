@@ -386,7 +386,6 @@ namespace VehicleConfiguration.WPF
                 "Araç Opsiyon Seçimleri:" + optionTextList + "<br>" +
                 "İyi Çalışmalar Teklif Olarak Müşteriye Dönüş Yapınız");
 
-
             Home home = new Home();
 
             this.Close();
@@ -519,8 +518,6 @@ namespace VehicleConfiguration.WPF
                 MessageBox.Show("Lütfen Döşeme Seçiniz");
                 return;
             }
-
-            generalOperation = new GeneralOperation();
 
             gridSecond.Visibility = Visibility.Visible;
             gridSection.Visibility = Visibility.Collapsed;
