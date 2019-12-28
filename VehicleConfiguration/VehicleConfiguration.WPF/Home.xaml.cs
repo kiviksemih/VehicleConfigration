@@ -28,7 +28,6 @@ namespace VehicleConfiguration.WPF
 
             if (StaticUser.GetUser().IsAdmin)
             {
-                btnDraftOrder.Visibility = Visibility.Visible;
                 btnRegister.Visibility = Visibility.Visible;
             }
         }
